@@ -10,7 +10,7 @@ namespace MFATest
 {
     public partial class MainPage : ContentPage
     {
-        public static string clientId = "<<INSERT YOUR CLIENT ID HERE>>";
+        public static string clientId = "4c2d7c93-9268-49ea-a31c-da3ca5032922";
         public static string authority = "https://login.windows.net/common";
         public static string returnUri = "http://MFATestPCL-redirect";
         private const string graphResourceUri = "https://graph.windows.net";
