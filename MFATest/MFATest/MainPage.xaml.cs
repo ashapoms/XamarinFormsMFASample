@@ -13,7 +13,7 @@ namespace MFATest
 {
     public partial class MainPage : ContentPage
     {
-        public static string clientId = "<<INSERT YOUR CLIENT ID HERE>>";
+        public static string clientId = "4c2d7c93-9268-49ea-a31c-da3ca5032922";
         public static string authority = "https://login.windows.net/common";
         public static string returnUri = "http://MFATestPCL-redirectTest";
         private const string graphResourceUri = "https://graph.windows.net";
@@ -36,7 +36,7 @@ namespace MFATest
                 var userName = authResult.UserInfo.GivenName + " " + authResult.UserInfo.FamilyName;
                 lblUserName.Text = userName;
                 lblMessage.Text = "Access Token: " + authResult.AccessToken.ToString();
-                //await DisplayAlert("Token", userName, "Ok", "Cancel");
+                // await DisplayAlert("Token", userName, "Ok", "Cancel");
             }
             catch (Exception ex)
             {
@@ -76,7 +76,7 @@ namespace MFATest
             if (!(authResult is null))
             {
                 client.MaxResponseContentBufferSize = 256000;
-                var uri = new Uri(string.Format("http://adalrestserviceendpoint.com:8081/api/", string.Empty));
+                var uri = new Uri(string.Format("http://centos-srv01.westeurope.cloudapp.azure.com:3000/tasks", string.Empty));
                 string authHeader = authResult.CreateAuthorizationHeader();
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", authHeader);
 
