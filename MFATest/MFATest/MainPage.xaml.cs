@@ -36,7 +36,7 @@ namespace MFATest
                 var userName = authResult.UserInfo.GivenName + " " + authResult.UserInfo.FamilyName;
                 lblUserName.Text = userName;
                 lblMessage.Text = "Access Token: " + authResult.AccessToken.ToString();
-                // await DisplayAlert("Token", userName, "Ok", "Cancel");
+                await DisplayAlert("Token", userName, "Ok", "Cancel");
             }
             catch (Exception ex)
             {
@@ -107,7 +107,7 @@ namespace MFATest
             if (!(authResult is null))
             {
                 client.MaxResponseContentBufferSize = 256000;
-                var uri = new Uri(string.Format("http://centos-srv01.westeurope.cloudapp.azure.com:3000/tasks/sevstaluser01/task01", string.Empty));
+                var uri = new Uri(string.Format("http://centos-srv01.westeurope.cloudapp.azure.com:3000/tasks/sevstaluser01/task02", string.Empty));
                 // string authHeader = authResult.CreateAuthorizationHeader();
                 // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", authHeader);
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
