@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
 using Android.App;
 using Android.Content;
 using Android.OS;
@@ -13,6 +12,7 @@ using Microsoft.IdentityModel.Clients.ActiveDirectory;
 using Xamarin.Forms;
 using MFATest;
 using System.Threading.Tasks;
+using Android.Webkit;
 
 [assembly: Dependency(typeof(MFATestPCL.Droid.Helper.Authenticator))]
 namespace MFATestPCL.Droid.Helper
@@ -31,6 +31,14 @@ namespace MFATestPCL.Droid.Helper
             var authResult = await authContext.AcquireTokenAsync(resource, clientId, uri, platformParams);
             return authResult;
         }
+
+        void IAuthenticator.ClearAllCookies()
+        {
+            CookieManager cookieManager = CookieManager.Instance;
+            cookieManager.RemoveAllCookie();
+            cookieManager.Flush();
+        }
+
     }
 
 }

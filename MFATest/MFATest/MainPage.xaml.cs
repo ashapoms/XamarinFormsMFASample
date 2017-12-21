@@ -44,61 +44,15 @@ namespace MFATest
             }
         }
 
-        private async void btnCallRest_Clicked(object sender, EventArgs e)
+        private void btnLogout_Clicked(object sender, EventArgs e)
         {
-            client.MaxResponseContentBufferSize = 256000;
-            var uri = new Uri(string.Format("http://developer.xamarin.com:8081/api/todoitems/", string.Empty));
-            var authData = string.Format("{0}:{1}", "Xamarin", "Pa$$w0rd6");
-            var authHeaderValue = Convert.ToBase64String(Encoding.UTF8.GetBytes(authData));
-            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeaderValue);
-
-            try
+            if (authResult != null)
             {
-                var response = await client.GetAsync(uri);
-                if (response.IsSuccessStatusCode)
-                {
-                    //lblMessage.Text = "REST Call Success";
-                    lblMessage.Text = await response.Content.ReadAsStringAsync();
-                    //var content = await response.Content.ReadAsStringAsync();
-                    //Items = JsonConvert.DeserializeObject<List<TodoItem>>(content);
-                }
+                AuthenticationContext ac = new AuthenticationContext(authority);
+                ac.TokenCache.Clear();
+                var auth = DependencyService.Get<IAuthenticator>();
+                auth.ClearAllCookies();
             }
-            catch (Exception ex)
-            {
-                lblMessage.Text = $"ERROR: {ex.Message}";
-            }
-
-        }
-
-        private async void btnCallRestAdal_Clicked(object sender, EventArgs e)
-        {
-
-            if (!(authResult is null))
-            {
-                client.MaxResponseContentBufferSize = 256000;
-                var uri = new Uri(string.Format("http://centos-srv01.westeurope.cloudapp.azure.com:3000/tasks/sevstaluser01", string.Empty));
-                // string authHeader = authResult.CreateAuthorizationHeader();
-                // client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Authorization", authHeader);
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authResult.AccessToken);
-
-                try
-                {
-                    var response = await client.GetAsync(uri);
-                    if (response.IsSuccessStatusCode)
-                    {
-                        //lblMessage.Text = "REST Call Success";
-                        lblMessage.Text = await response.Content.ReadAsStringAsync();
-                        //var content = await response.Content.ReadAsStringAsync();
-                        //Items = JsonConvert.DeserializeObject<List<TodoItem>>(content);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    lblMessage.Text = $"ERROR: {ex.Message}";
-                }
-            }
-            else
-                lblMessage.Text = "Please press Login to Azure button first";
         }
 
         private async void btnAddTaskRestAdal_Clicked(object sender, EventArgs e)

@@ -17,7 +17,7 @@
                 <Label x:Name="lblUserName" Text="none" FontSize="Small"/>
             </StackLayout>
             <Label x:Name="lblMessage" HeightRequest="100" FontSize="Small"/>
-            <Button x:Name="btnCallRestBasic" Text="Call REST Service Basic auth" Clicked="btnCallRest_Clicked" />
+            <Button x:Name="btnLogout" Text="Clear token and all cookies" Clicked="btnLogout_Clicked" />
             <Button x:Name="btnCallRestAdal" Text="Tasks list" Clicked="btnCallRestAdal_Clicked" />
             <Button x:Name="btnAddTaskRestAdal" Text="Add task" Clicked="btnAddTaskRestAdal_Clicked" />
 
