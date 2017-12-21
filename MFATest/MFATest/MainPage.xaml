@@ -20,7 +20,7 @@
             <Button x:Name="btnLogout" Text="Clear token and all cookies" Clicked="btnLogout_Clicked" />
             <Button x:Name="btnCallRestAdal" Text="Tasks list" Clicked="btnCallRestAdal_Clicked" />
             <Button x:Name="btnAddTaskRestAdal" Text="Add task" Clicked="btnAddTaskRestAdal_Clicked" />
-
+            <Entry x:Name="txtinput" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
